@@ -11,6 +11,23 @@ function renderHasSongs() {
 }
 
 function addSong(artistValue, titleValue) {
+  // Create an <li> and give it the "song" class
+  const songElement = document.createElement("li");
+  songElement.classList.add("song");
+
+  // Create song elements
+  const artistElement = document.createElement("h3");
+  artistElement.classList.add("song__artist");
+  artistElement.textContent = artistValue;
+
+  const titleElement = document.createElement("p");
+  titleElement.classList.add("song__title");
+  titleElement.textContent = titleValue;
+
+  const likeButtonElement = document.createElement("button");
+  likeButtonElement.classList.add("song__button", "song__button_type_like");
+  likeButtonElement.setAttribute("type", "button");
+
   songsContainer.innerHTML += `
     <li class="song">
       <h3 class="song__artist">${artistValue}</h3>
@@ -18,6 +35,9 @@ function addSong(artistValue, titleValue) {
       <button type="button" class="song__button song__button_type_like"></button>
     </li>
   `;
+
+  // Return the song element
+  return songElement;
 }
 
 addSongForm.addEventListener("submit", function (evt) {
