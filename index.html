@@ -46,7 +46,18 @@
         <div class="no-songs">
           <p class="no-songs__text">No songs added</p>
         </div>
-        <ul class="songs-container"></ul>
+        <ul class="songs-container">
+          <template id="song-template">
+            <li class="song">
+              <h3 class="song__artist"></h3>
+              <p class="song__title"></p>
+              <button
+                type="button"
+                class="song__button song__button_type_like"
+              ></button>
+            </li>
+          </template>
+        </ul>
         <button class="block__button button" id="clear-playlist-btn" disabled>
           Clear playlist
         </button>

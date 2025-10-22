@@ -29,3 +29,59 @@ const taskElements = tasks.map(task => {
 // Add all elements to the DOM by "unpacking"
 // the array elements into append()
 list.append(...taskElements);
+
+
+// Cloning Elements
+// Cloning the element with all its child elements 
+const deepCopy = elem.cloneNode(true);
+
+// Cloning the element without its child elements
+const shallowCopy = elem.cloneNode(false);
+
+//
+const container = document.querySelector(".container");
+const element = document.querySelector(".element");
+
+// Create a clone of an existing element.
+const elementCopy = element.cloneNode(true);
+
+// Add the clone to the DOM.
+container.append(elementCopy);
+
+/// Using <template>
+If you add a <template> element to your HTML, 
+it won’t be displayed on the website. 
+But we can access these templates with JavaScript,
+clone their content, create new nodes, and add them to the DOM.
+
+
+<!-- This will not appear on the webpage -->
+<template id="user-template">
+  <div class="user">
+    <img class="user__avatar" alt="avatar">
+    <p class="user__name"></p>
+  </div>
+</template>
+
+
+
+// Select the template and access its content.
+const usersContainer = document.querySelector('.users-container');
+
+const userTemplate = document
+  .querySelector("#user-template")
+  .content
+  .querySelector(".user");
+
+// Make a clone of the template’s content
+const userElement = userTemplate.cloneNode(true);
+
+// Add content to the clone
+const userAvatar = userElement.querySelector(".user__avatar");
+
+userAvatar.src = "https://placeholder.png";
+const userName = userElement.querySelector(".user__name");
+userName.textContent = "Laura Ipsum";
+
+// Add the clone to the DOM
+usersContainer.append(userElement);
