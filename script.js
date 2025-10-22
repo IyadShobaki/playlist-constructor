@@ -28,13 +28,17 @@ function addSong(artistValue, titleValue) {
   likeButtonElement.classList.add("song__button", "song__button_type_like");
   likeButtonElement.setAttribute("type", "button");
 
-  songsContainer.innerHTML += `
+  // Append the artist, title, and button elements to the song element
+  songElement.append(artistElement, titleElement, likeButtonElement);
+
+  songsContainer.append(songElement);
+  /* songsContainer.innerHTML += `
     <li class="song">
       <h3 class="song__artist">${artistValue}</h3>
       <p class="song__title">${titleValue}</p>
       <button type="button" class="song__button song__button_type_like"></button>
     </li>
-  `;
+  `; */
 
   // Return the song element
   return songElement;

@@ -1,0 +1,31 @@
+
+// The five methods of adding elements
+
+node.append(...args) inserts its arguments after the last child of the node
+node.prepend(...args) inserts its arguments before the first child of the node
+node.before(...args) inserts its arguments before the node
+node.after(...args) inserts its arguments after the node
+node.replaceWith(...args) replaces the node with the specified nodes or strings
+
+
+// Unfolding an array of arguments
+
+const list = document.querySelector(".todo-list");
+
+// An array of tasks for today
+const tasks = [
+  "Do a project",
+  "Walk the dog",
+  "Complete a React tutorial"
+];
+
+// Convert the array of tasks for today to an array of elements
+const taskElements = tasks.map(task => {
+  const listItem = document.createElement("li");
+  listItem.textContent = task;
+  return listItem;
+});
+
+// Add all elements to the DOM by "unpacking"
+// the array elements into append()
+list.append(...taskElements);
