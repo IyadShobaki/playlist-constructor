@@ -1,3 +1,11 @@
+const initialSongs = [
+  { artist: "Young Marco", title: "Kalapa Garden" },
+  { artist: "10cc", title: "I'm Not In Love" },
+  { artist: "Rodrigo y Gabriela", title: "Tamacun" },
+  { artist: "apolumni, Aleeray", title: "When It Gets Dark" },
+  { artist: "crimson taupe", title: "siren" },
+];
+
 const container = document.querySelector(".container");
 const songsContainer = container.querySelector(".songs-container");
 const noSongsElement = container.querySelector(".no-songs");
@@ -35,4 +43,11 @@ addSongForm.addEventListener("submit", function (evt) {
 
   artist.value = "";
   title.value = "";
+});
+
+initialSongs.forEach((song) => {
+  //   console.log(song.artist);
+  //   console.log(song.title);
+  addSong(song.artist, song.title);
+  renderHasSongs();
 });
