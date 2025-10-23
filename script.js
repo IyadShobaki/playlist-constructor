@@ -21,15 +21,15 @@ function renderHasSongs() {
   noSongsElement.classList.add("no-songs_hidden");
 }
 
-function addSong(artistValue, titleValue) {
+function createSongElement(artist, title) {
   // Using song template
   const songElement = songTemplate.cloneNode(true);
 
   const artistElement = songElement.querySelector(".song__artist");
-  artistElement.textContent = artistValue;
+  artistElement.textContent = artist;
 
   const titleElement = songElement.querySelector(".song__title");
-  titleElement.textContent = titleValue;
+  titleElement.textContent = title;
 
   songsContainer.append(songElement);
   return songElement;
@@ -38,8 +38,7 @@ function addSong(artistValue, titleValue) {
 addSongForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  addSong(artist.value, title.value);
-  renderHasSongs();
+  renderSongElement(artist.value, title.value);
 
   artist.value = "";
   title.value = "";
@@ -48,6 +47,11 @@ addSongForm.addEventListener("submit", function (evt) {
 initialSongs.forEach((song) => {
   //   console.log(song.artist);
   //   console.log(song.title);
-  addSong(song.artist, song.title);
-  renderHasSongs();
+  renderSongElement(song.artist, song.title);
 });
+
+function renderSongElement(artist, title) {
+  const songEl = createSongElement(artist, title);
+  songsContainer.append(songEl);
+  renderHasSongs();
+}
