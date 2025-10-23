@@ -85,3 +85,29 @@ userName.textContent = "Laura Ipsum";
 
 // Add the clone to the DOM
 usersContainer.append(userElement);
+
+
+////////////////////////////////////////////////////////
+// Remove element
+function createTodoElement(data) {
+    const todoElement = document.querySelector("#todo-template");
+    
+    const todoDeleteBtn = todoElement.querySelector(".todo-item__button");
+    todoDeleteBtn.addEventListener(() => {
+      todoElement.remove();
+    });
+}
+
+// Move element
+const todoList = document.querySelector(".todo-list");
+
+// listItems is a pseudo-array of all the
+// children of the todo-list element.
+const todoListItems = todoList.children;
+
+// We can move the first child to the end of the
+// list by appending it to the same container. 
+todoList.append(todoListItems[0]);
+
+This approach works with all five methods of 
+element placement: append(), prepend(), before(), after(), and replaceWith()

@@ -138,6 +138,12 @@ button:disabled {
   margin-right: 10px;
 }
 
+.song__buttons {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
 .song__button {
   border: none;
   background: url(https://code.s3.yandex.net/web-code/dom/heart.svg) center
@@ -148,7 +154,10 @@ button:disabled {
   width: 15px;
   opacity: 0.5;
   transition: 0.3s;
-  margin-left: auto;
+}
+
+.song__button_type_delete {
+  background-image: url(https://practicum-content.s3.us-west-1.amazonaws.com/web-developer/icons-2025/delete-icon-black.svg);
 }
 
 .song__button:hover {

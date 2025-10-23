@@ -17,9 +17,9 @@ var initialSongs = [{
   title: "siren"
 }];
 var container = document.querySelector(".container");
+var songTemplate = document.querySelector("#song-template").content.querySelector(".song");
 var songsContainer = container.querySelector(".songs-container");
 var noSongsElement = container.querySelector(".no-songs");
-var songTemplate = document.querySelector("#song-template").content.querySelector(".song");
 var addSongForm = container.querySelector("#add-song-form");
 var title = document.querySelector("#song-title-input");
 var artist = document.querySelector("#song-artist-input");
@@ -28,16 +28,26 @@ function renderHasSongs() {
   noSongsElement.classList.add("no-songs_hidden");
 }
 
+function renderSongElement(artist, title) {
+  var songEl = createSongElement(artist, title);
+  songsContainer.append(songEl);
+  renderHasSongs();
+}
+
 function createSongElement(artist, title) {
-  // Using song template
   var songElement = songTemplate.cloneNode(true);
   var artistElement = songElement.querySelector(".song__artist");
   artistElement.textContent = artist;
   var titleElement = songElement.querySelector(".song__title");
   titleElement.textContent = title;
   var songLikeBtn = songElement.querySelector(".song__button_type_like");
-  songLikeBtn.addEventListener("click", function () {
-    songLikeBtn.classList.toggle("song__button_active");
+  songLikeBtn.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("song__button_active");
+  }); // Write your code here
+
+  var songDeleteBtn = songElement.querySelector(".song__button_type_delete");
+  songDeleteBtn.addEventListener("click", function () {
+    songElement.remove();
   });
   return songElement;
 }
@@ -49,13 +59,5 @@ addSongForm.addEventListener("submit", function (evt) {
   title.value = "";
 });
 initialSongs.forEach(function (song) {
-  //   console.log(song.artist);
-  //   console.log(song.title);
-  renderSongElement(song.artist, song.title);
+  renderSongElement(song.artist, song.value);
 });
-
-function renderSongElement(artist, title) {
-  var songEl = createSongElement(artist, title);
-  songsContainer.append(songEl);
-  renderHasSongs();
-}

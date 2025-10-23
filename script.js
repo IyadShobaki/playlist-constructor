@@ -7,11 +7,12 @@ const initialSongs = [
 ];
 
 const container = document.querySelector(".container");
-const songsContainer = container.querySelector(".songs-container");
-const noSongsElement = container.querySelector(".no-songs");
+
 const songTemplate = document
   .querySelector("#song-template")
   .content.querySelector(".song");
+const songsContainer = container.querySelector(".songs-container");
+const noSongsElement = container.querySelector(".no-songs");
 
 const addSongForm = container.querySelector("#add-song-form");
 const title = document.querySelector("#song-title-input");
@@ -21,8 +22,13 @@ function renderHasSongs() {
   noSongsElement.classList.add("no-songs_hidden");
 }
 
+function renderSongElement(artist, title) {
+  const songEl = createSongElement(artist, title);
+  songsContainer.append(songEl);
+  renderHasSongs();
+}
+
 function createSongElement(artist, title) {
-  // Using song template
   const songElement = songTemplate.cloneNode(true);
 
   const artistElement = songElement.querySelector(".song__artist");
@@ -32,10 +38,15 @@ function createSongElement(artist, title) {
   titleElement.textContent = title;
 
   const songLikeBtn = songElement.querySelector(".song__button_type_like");
-  songLikeBtn.addEventListener("click", function () {
-    songLikeBtn.classList.toggle("song__button_active");
+  songLikeBtn.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("song__button_active");
   });
 
+  // Write your code here
+  const songDeleteBtn = songElement.querySelector(".song__button_type_delete");
+  songDeleteBtn.addEventListener("click", function () {
+    songElement.remove();
+  });
   return songElement;
 }
 
@@ -49,13 +60,5 @@ addSongForm.addEventListener("submit", function (evt) {
 });
 
 initialSongs.forEach((song) => {
-  //   console.log(song.artist);
-  //   console.log(song.title);
-  renderSongElement(song.artist, song.title);
+  renderSongElement(song.artist, song.value);
 });
-
-function renderSongElement(artist, title) {
-  const songEl = createSongElement(artist, title);
-  songsContainer.append(songEl);
-  renderHasSongs();
-}
