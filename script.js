@@ -18,8 +18,23 @@ const addSongForm = container.querySelector("#add-song-form");
 const title = document.querySelector("#song-title-input");
 const artist = document.querySelector("#song-artist-input");
 
+const clearPlaylistBtn = document.querySelector("#clear-playlist-btn");
+clearPlaylistBtn.addEventListener("click", function () {
+  const songs = [...songsContainer.children];
+  songs.forEach((song) => {
+    song.remove();
+  });
+  renderNoSongs();
+});
+
+function renderNoSongs() {
+  noSongsElement.classList.remove("no-songs_hidden");
+  clearPlaylistBtn.disabled = true;
+}
+
 function renderHasSongs() {
   noSongsElement.classList.add("no-songs_hidden");
+  clearPlaylistBtn.disabled = false;
 }
 
 function renderSongElement(artist, title) {
